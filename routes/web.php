@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\PrimerControlador;
 use App\Http\Controllers\SegundoControlador;
 use Illuminate\Contracts\View\View;
@@ -9,9 +10,11 @@ Route::get('/', function () {
     return View('welcome');
 });
 
-Route::get('test', [PrimerControlador::class,'index']);
+Route::resource('post', PostController::class);
+
+//Route::get('test', [PrimerControlador::class,'index']);
 //Route::resource('post', PrimerControlador::class); obtiene todos los recursos del crud
-Route::get('otro/{post}/{otro?}', [PrimerControlador::class,'otro']);
+//Route::get('otro/{post}/{otro?}', [PrimerControlador::class,'otro']);
 
 
 
