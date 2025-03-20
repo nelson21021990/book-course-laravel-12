@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <a href="{{ route('category.create') }}" target="blank">Create</a>
+    <a href="{{ route('category.create') }}" target="blank">Create</a>
 
     <table>
         <thead>

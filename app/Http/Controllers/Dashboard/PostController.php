@@ -18,6 +18,8 @@ class PostController extends Controller
      */
     public function index()//:Response->para texto plano
     {
+        session()->flush();//borra la session
+        //session(['key' => 'value']); //crea el mensaje de session durante un tiempo
         $posts = Post::paginate(3);
         //dd($posts);
         return view('dashboard.post.index',compact('posts'));
@@ -75,8 +77,8 @@ class PostController extends Controller
     public function store(PutRequest $request)
     {
         Post::create($request->validated()); // creacion del post simplificada
-
-        return to_route('post.index');
+        
+        return to_route('post.index')->with('status','Category create');
 
        
         //dd($request->all()['title']);
@@ -137,7 +139,7 @@ class PostController extends Controller
         //imagen
         $post->update($data);
 
-        return to_route('post.index');
+        return to_route('post.index')->with('status','Category update');
     }
 
     /**
@@ -146,6 +148,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route('post.index');
+        return to_route('post.index')->with('status','Category delete');
     }
 }

@@ -10,9 +10,7 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()//:Response->para texto plano
     {
         $categories = Category::paginate(3);
@@ -28,14 +26,12 @@ class CategoryController extends Controller
         return view('dashboard/category/create',compact('category'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(StoreRequest $request)
     {
         Category::create($request->validated()); // creacion del post simplificada
 
-        return to_route('category.index');
+        return to_route('category.index')->with('status','Category create');
 
     }
 
@@ -52,12 +48,13 @@ class CategoryController extends Controller
     }
 
     public function update(PutRequest $request, Category $category)
+    
     { 
     
 
         $category->update($request->validated());
 
-        return to_route('category.index');
+        return to_route('category.index')->with('status','Category update');
     }
 
     /**
@@ -66,6 +63,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('category.index');
+        return to_route('category.index')->with('status','Category delete');
     }
 }

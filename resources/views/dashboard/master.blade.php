@@ -10,6 +10,17 @@
     <header>
         <!--Header 2-->
     </header>
+    @session('key')
+    <h1>{{$value}}</h1>
+    @endsession
+    @session('status') <!--Forma nueva-->
+    {{ $value }}
+    @endsession
+
+    {{-- @if (session('status')) <!--Forma anterior-->
+    {{ session('status') }} 
+    
+    @endif --}}
 
     @yield('content')
 
