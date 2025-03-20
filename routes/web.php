@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\PrimerControlador;
 use App\Http\Controllers\SegundoControlador;
@@ -10,7 +11,17 @@ Route::get('/', function () {
     return View('welcome');
 });
 
-Route::resource('post', PostController::class);
+
+Route::group(['prefix' => 'dashboard'],function(){
+    Route::resource('post', PostController::class);
+    Route::resource('category', CategoryController::class);
+    // Route::resources(
+    //     [
+    //         'post' => PostController::class,
+    //         'category' => CategoryController::class,
+    //     ]
+    //     ); // Segunda forma de agrupar
+});
 
 //Route::get('test', [PrimerControlador::class,'index']);
 //Route::resource('post', PrimerControlador::class); obtiene todos los recursos del crud
